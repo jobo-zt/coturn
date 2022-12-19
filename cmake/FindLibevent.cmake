@@ -13,7 +13,10 @@
 # Libevent::extra       - extra functions, contains http, dns and rpc
 # Libevent::pthreads    - multiple threads for Libevent, not exists on Windows
 # Libevent::openssl     - openssl support for Libevent
-
+if(WIN32)
+    set(Libevent_INCLUDE_DIR "${CMAKE_SOURCE_DIR}\\misc\\libevent\\include")
+    set(Libevent_LIBRARY "${CMAKE_SOURCE_DIR}\\misc\\libevent\\lib\\Release\\event.lib" "${CMAKE_SOURCE_DIR}\\misc\\libevent\\lib\\Release\\event_openssl.lib")
+endif()
 macro(no_component_msg _comp)
     if(${CMAKE_FIND_PACKAGE_NAME}_FIND_REQUIRED_${_comp})
         set(pthreadlib)
